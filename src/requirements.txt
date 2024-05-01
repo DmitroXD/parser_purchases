@@ -1,0 +1,11 @@
+aiogram==3.4.1
+aiofiles==23.2.1
+pydantic==2.5.3
+pydantic-settings==2.2.1
+redis==5.0.3
+tortoise-orm[asyncmy]==0.20.0
+asyncmy==0.2.9
+aiohttp~=3.9.4
+yarl~=1.9.4
+beautifulsoup4~=4.12.3
+bitrix24-rest==2.0.0

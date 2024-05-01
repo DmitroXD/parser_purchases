@@ -1,0 +1,23 @@
+name: builder
+
+on:
+  push:
+    branches: [ "development" ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy on production server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOY_SSH_HOST }}
+          username: ${{ secrets.DEPLOY_SSH_USERNAME }}
+          password: ${{ secrets.DEPLOY_SSH_SECRET }}
+          port: ${{ secrets.DEPLOY_SSH_PORT }}
+          script: |
+            cd ${{ github.event.repository.name }}
+            git pull
+            docker-compose up -d --build --remove-orphans >> docker-compose.log && cat docker-compose.log           
